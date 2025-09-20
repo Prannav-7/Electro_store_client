@@ -870,6 +870,8 @@ const Payment = () => {
 
 
 
+  // Handle successful payment (legacy function - kept for compatibility)
+  // eslint-disable-next-line no-unused-vars
   const handlePaymentSuccess = async (orderData) => {
     try {
       console.log('✅ Processing successful payment...');
