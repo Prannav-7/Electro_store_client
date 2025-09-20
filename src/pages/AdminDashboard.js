@@ -6,6 +6,7 @@ import SalesDashboard from '../components/SalesDashboard';
 import AnimatedMonthlySalesDashboard from '../components/AnimatedMonthlySalesDashboard';
 import CustomerOrders from '../components/CustomerOrders';
 import { useAdmin } from '../hooks/useAdmin';
+import { getImageUrl } from '../utils/imageUtils';
 import api from '../api';
 
 const AdminDashboard = () => {
@@ -787,7 +788,7 @@ const ProductRow = ({ product, index, onEdit, onDelete, onUpdate, isEditing }) =
       {/* Product Image */}
       <div>
         <img
-          src={product.imageUrl ? `http://localhost:5000${product.imageUrl}` : 'http://localhost:5000/images/placeholder-product.png'}
+          src={getImageUrl(product.imageUrl)}
           alt={product.name}
           style={{
             width: '60px',

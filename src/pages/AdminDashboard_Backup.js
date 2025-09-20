@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import AdminIndicator from '../components/AdminIndicator';
 import { useAdmin } from '../hooks/useAdmin';
+import { getImageUrl } from '../utils/imageUtils';
 import api from '../api';
 
 const AdminDashboard = () => {
@@ -591,7 +592,7 @@ const ProductRow = ({ product, index, onEdit, onDelete, onUpdate, isEditing }) =
       {/* Product Image */}
       <div>
         <img
-          src={product.imageUrl ? `http://localhost:5000${product.imageUrl}` : 'http://localhost:5000/images/placeholder-product.png'}
+          src={getImageUrl(product.imageUrl)}
           alt={product.name}
           style={{
             width: '60px',

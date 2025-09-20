@@ -4,6 +4,7 @@ import api from "../api";
 import Header from '../components/Header';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
+import { getImageUrl } from '../utils/imageUtils';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
@@ -265,7 +266,7 @@ const ProductDetails = () => {
 
   // Mock product images - in real app, these would come from the API
   const productImages = [
-    product.imageUrl ? 'http://localhost:5000' + product.imageUrl : '/images/default-product.jpg'
+    getImageUrl(product.imageUrl)
   ];
 
   return (
@@ -567,11 +568,11 @@ const ProductDetails = () => {
                                 if (img.startsWith('http')) {
                                   imageSrc = img;
                                 } else if (img.startsWith('/uploads/')) {
-                                  imageSrc = `http://localhost:5000${img}`;
+                                  imageSrc = getImageUrl(img);
                                 } else if (img.startsWith('uploads/')) {
-                                  imageSrc = `http://localhost:5000/${img}`;
+                                  imageSrc = getImageUrl(img);
                                 } else {
-                                  imageSrc = `http://localhost:5000/uploads/reviews/${img}`;
+                                  imageSrc = getImageUrl(`/uploads/reviews/${img}`);
                                 }
                                 
                                 return (

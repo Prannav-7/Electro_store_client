@@ -1,6 +1,6 @@
 // src/pages/MyAccount.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -50,7 +50,7 @@ const MyAccount = () => {
         // Fetch orders using the correct endpoint
         const token = localStorage.getItem('token');
         if (token) {
-          const ordersResponse = await axios.get('http://localhost:5000/api/orders', {
+          const ordersResponse = await api.get('/orders', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -114,7 +114,7 @@ const MyAccount = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:5000/api/users/profile', {
+      const response = await api.put('/users/profile', {
         name: editForm.name,
         email: editForm.email
       }, {
@@ -162,7 +162,7 @@ const MyAccount = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:5000/api/users/password', {
+      const response = await api.put('/users/password', {
         currentPassword: passwordForm.currentPassword,
         newPassword: passwordForm.newPassword
       }, {
@@ -536,7 +536,7 @@ const MyAccount = () => {
                             📋 View Details
                           </button>
                           <button
-                            onClick={() => window.open(`http://localhost:5000/api/orders/${order._id}/invoice`, '_blank')}
+                            onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
                             style={{
                               background: 'transparent',
                               color: '#28A745',

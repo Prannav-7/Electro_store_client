@@ -1,7 +1,7 @@
 // src/pages/OrderDetails.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import Header from '../components/Header';
 
@@ -30,7 +30,7 @@ const OrderDetails = () => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+        const response = await api.get(`/orders/${orderId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -572,7 +572,7 @@ const OrderDetails = () => {
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <button
-                  onClick={() => window.open(`http://localhost:5000/api/orders/${order._id}/invoice`, '_blank')}
+                  onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
                   style={{
                     background: '#28A745',
                     color: 'white',

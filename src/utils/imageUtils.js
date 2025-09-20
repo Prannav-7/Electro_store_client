@@ -1,5 +1,5 @@
 // Image utility functions
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'https://electro-store-server-8m0d.onrender.com';
 
 /**
  * Get the full image URL for a product

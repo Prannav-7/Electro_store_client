@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import Header from '../components/Header';
 import AdminIndicator from '../components/AdminIndicator';
 import { ValidationUtils } from '../utils/validation';
@@ -113,7 +113,7 @@ const AddProduct = () => {
         const uploadData = new FormData();
         uploadData.append('image', imageFile);
         
-        const uploadResponse = await axios.post('http://localhost:5000/api/upload', uploadData, {
+        const uploadResponse = await api.post('/upload', uploadData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -135,7 +135,7 @@ const AddProduct = () => {
         imageUrl: imageUrl
       };
 
-      const response = await axios.post('http://localhost:5000/api/products', productData);
+      const response = await api.post('/products', productData);
       
       if (response.data.success) {
         alert('Product added successfully!');

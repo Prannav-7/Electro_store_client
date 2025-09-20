@@ -5,6 +5,7 @@ import api from '../api';
 import Header from '../components/Header';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
+import { getImageUrl } from '../utils/imageUtils';
 
 const ProductList = () => {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
@@ -298,7 +299,7 @@ const ProductList = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '15px',
-                  backgroundImage: `url(${product.imageUrl ? `http://localhost:5000${product.imageUrl}` : '/images/default-product.jpg'})`,
+                  backgroundImage: `url(${getImageUrl(product.imageUrl)})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   position: 'relative',
