@@ -1,8 +1,11 @@
 // src/api.js
 import axios from 'axios';
 
+// Use environment variable for API URL or fallback to production server
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: API_BASE_URL,
 });
 
 // Add request interceptor to include auth token
