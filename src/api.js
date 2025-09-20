@@ -4,8 +4,14 @@ import axios from 'axios';
 // Use environment variable for API URL or fallback to production server
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api';
 
+console.log('🔗 API Configuration:', {
+  baseURL: API_BASE_URL,
+  environment: process.env.NODE_ENV || 'development'
+});
+
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 30000, // 30 second timeout for Render cold starts
 });
 
 // Add request interceptor to include auth token
