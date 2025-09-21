@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Use environment variable for API URL or fallback to production server
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electro-store-server-8n0d.onrender.com/api';
 
 console.log('🔗 API Configuration:', {
   baseURL: API_BASE_URL,
