@@ -536,7 +536,7 @@ const MyAccount = () => {
                             📋 View Details
                           </button>
                           <button
-                            onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
+                            onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8n0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
                             style={{
                               background: 'transparent',
                               color: '#28A745',

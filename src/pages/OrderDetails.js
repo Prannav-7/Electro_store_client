@@ -572,7 +572,7 @@ const OrderDetails = () => {
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <button
-                  onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8m0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
+                  onClick={() => window.open(`${process.env.REACT_APP_API_URL || 'https://electro-store-server-8n0d.onrender.com/api'}/orders/${order._id}/invoice`, '_blank')}
                   style={{
                     background: '#28A745',
                     color: 'white',
