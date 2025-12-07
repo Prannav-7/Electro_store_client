@@ -12,11 +12,28 @@ const getBaseURL = () => {
   return process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 };
 
+// Get the server URL for images (without /api)
+export const getServerURL = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return process.env.REACT_APP_SERVER_URL || 'https://electro-store-server-8n0d.onrender.com';
+  }
+  return process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+};
+
+// Helper function to get full image URL
+export const getImageURL = (imagePath) => {
+  if (!imagePath) return '/images/default-product.jpg';
+  // If already a full URL, return as is
+  if (imagePath.startsWith('http')) return imagePath;
+  // Otherwise, prepend server URL
+  return `${getServerURL()}${imagePath}`;
+};
+
 const api = axios.create({
   baseURL: getBaseURL(),
-  timeout: 5000, // 5 second timeout for faster fallback
+  timeout: 30000, // 30 second timeout for Render cold starts
   retry: 2, // Reduced retry attempts for faster fallback
-  retryDelay: 1000, // 1 second retry delay for faster response
+  retryDelay: 2000, // 2 second retry delay
 });
 
 // Add request interceptor to include auth token

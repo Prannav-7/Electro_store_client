@@ -1,7 +1,7 @@
 // src/pages/ProductList.js
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import api, { getImageURL } from '../api';
 import Header from '../components/Header';
 import StarRating from '../components/StarRating';
 import { useAuth } from '../contexts/AuthContext';
@@ -345,7 +345,7 @@ const ProductList = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '15px',
-                  backgroundImage: `url(${product.imageUrl ? `http://localhost:5000${product.imageUrl}` : '/images/default-product.jpg'})`,
+                  backgroundImage: `url(${getImageURL(product.imageUrl)})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   position: 'relative',

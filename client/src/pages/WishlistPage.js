@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api';
+import api, { getImageURL } from '../api';
 import Header from '../components/Header';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
@@ -265,7 +265,7 @@ const WishlistPage = () => {
                     overflow: 'hidden'
                   }}>
                     <img
-                      src={product.imageUrl ? `http://localhost:5000${product.imageUrl}` : 'http://localhost:5000/images/products/default-product.png'}
+                      src={getImageURL(product.imageUrl)}
                       alt={product.name}
                       style={{
                         width: '100%',

@@ -6,7 +6,7 @@ import SalesDashboard from '../components/SalesDashboard';
 import AnimatedMonthlySalesDashboard from '../components/AnimatedMonthlySalesDashboard';
 import CustomerOrders from '../components/CustomerOrders';
 import { useAdmin } from '../hooks/useAdmin';
-import api from '../api';
+import api, { getImageURL } from '../api';
 
 const AdminDashboard = () => {
   const { isAdmin } = useAdmin();
@@ -869,7 +869,7 @@ const ProductCard = ({ product, index, onEdit, onDelete, onUpdate, isEditing, ca
         flexShrink: 0
       }}>
         <img
-          src={product.imageUrl ? `http://localhost:5000${product.imageUrl}` : '/images/default-product.svg'}
+          src={getImageURL(product.imageUrl) || '/images/default-product.svg'}
           alt={product.name}
           style={{
             width: '100%',
