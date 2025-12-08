@@ -3,17 +3,25 @@
 
 // Determine the base URLs based on environment
 export const getApiBaseURL = () => {
-  if (process.env.NODE_ENV === 'production') {
+  // Use window.location.hostname to detect if running on deployed domain
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
     return process.env.REACT_APP_API_URL || 'https://electro-store-server-8n0d.onrender.com/api';
   }
-  return process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 };
 
 export const getServerBaseURL = () => {
-  if (process.env.NODE_ENV === 'production') {
+  // Use window.location.hostname to detect if running on deployed domain
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
     return process.env.REACT_APP_SERVER_URL || 'https://electro-store-server-8n0d.onrender.com';
   }
-  return process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+  return 'http://localhost:5000';
 };
 
 // Export the URLs for use throughout the app
