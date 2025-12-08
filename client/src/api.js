@@ -33,7 +33,18 @@ export const getImageURL = (imagePath) => {
   if (!imagePath) return '/images/default-product.jpg';
   // If already a full URL, return as is
   if (imagePath.startsWith('http')) return imagePath;
-  // Otherwise, prepend server URL
+  
+  // In production, images are served from Vercel's public folder
+  // In development, images are served from the local server
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
+    // Serve images from Vercel's public folder (they're static assets)
+    return imagePath;
+  }
+  
+  // In development, serve from local server
   return `${getServerURL()}${imagePath}`;
 };
 

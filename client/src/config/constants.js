@@ -32,6 +32,18 @@ export const SERVER_BASE_URL = getServerBaseURL();
 export const getImageURL = (imagePath) => {
   if (!imagePath) return '/images/default-product.jpg';
   if (imagePath.startsWith('http')) return imagePath;
+  
+  // In production, images are served from Vercel's public folder
+  // In development, images are served from the local server
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
+    // Serve images from Vercel's public folder (they're static assets)
+    return imagePath;
+  }
+  
+  // In development, serve from local server
   return `${SERVER_BASE_URL}${imagePath}`;
 };
 
