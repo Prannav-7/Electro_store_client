@@ -4,20 +4,28 @@ import axios from 'axios';
 // Determine the base URL based on environment
 const getBaseURL = () => {
   // Check if we're in production (on Vercel or other hosting)
-  if (process.env.NODE_ENV === 'production') {
+  // Use window.location.hostname to detect if running on deployed domain
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
     // Use the Render server URL for production
     return process.env.REACT_APP_API_URL || 'https://electro-store-server-8n0d.onrender.com/api';
   }
   // Use localhost for development
-  return process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 };
 
 // Get the server URL for images (without /api)
 export const getServerURL = () => {
-  if (process.env.NODE_ENV === 'production') {
+  // Use window.location.hostname to detect if running on deployed domain
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
     return process.env.REACT_APP_SERVER_URL || 'https://electro-store-server-8n0d.onrender.com';
   }
-  return process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+  return 'http://localhost:5000';
 };
 
 // Helper function to get full image URL
