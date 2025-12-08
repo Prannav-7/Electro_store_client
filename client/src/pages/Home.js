@@ -1,12 +1,11 @@
 // src/pages/Home.js - Modern Sathiya-inspired UI
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api';
+import api, { getImageURL } from '../api';
 import Header from '../components/Header';
 import StarRating from '../components/StarRating';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
-import { getImageURL } from '../config/constants';
 
 function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
