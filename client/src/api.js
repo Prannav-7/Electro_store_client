@@ -28,7 +28,7 @@ export const getServerURL = () => {
   return 'http://localhost:5000';
 };
 
-// Helper function to get full image URL
+// Helper function to get full image URL (updated for production)
 export const getImageURL = (imagePath) => {
   if (!imagePath) return '/images/default-product.jpg';
   // If already a full URL, return as is
