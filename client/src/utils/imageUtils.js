@@ -1,7 +1,4 @@
 // Image utility functions
-import { SERVER_BASE_URL } from '../config/constants';
-
-const API_BASE_URL = SERVER_BASE_URL;
 
 /**
  * Get the full image URL for a product
@@ -10,7 +7,7 @@ const API_BASE_URL = SERVER_BASE_URL;
  */
 export const getImageUrl = (imageUrl) => {
   if (!imageUrl) {
-    return `${API_BASE_URL}/images/default-product.svg`;
+    return '/images/default-product.svg';
   }
   
   // If it's already a full URL, return as is
@@ -18,13 +15,20 @@ export const getImageUrl = (imageUrl) => {
     return imageUrl;
   }
   
-  // If it starts with /, prepend the base URL
-  if (imageUrl.startsWith('/')) {
-    return `${API_BASE_URL}${imageUrl}`;
+  // In production (Vercel), images are static assets served from public folder
+  // In development, we need localhost:5000
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                       window.location.hostname !== 'localhost';
+  
+  if (isProduction) {
+    // Return path as-is for Vercel to serve from public folder
+    return imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
   }
   
-  // Otherwise, assume it's a relative path and add the base URL and leading slash
-  return `${API_BASE_URL}/${imageUrl}`;
+  // Development: serve from local server
+  return imageUrl.startsWith('/') 
+    ? `http://localhost:5000${imageUrl}` 
+    : `http://localhost:5000/${imageUrl}`;
 };
 
 /**
@@ -32,7 +36,7 @@ export const getImageUrl = (imageUrl) => {
  * @returns {string} - The default image URL
  */
 export const getDefaultImageUrl = () => {
-  return `${API_BASE_URL}/images/default-product.svg`;
+  return '/images/default-product.svg';
 };
 
 export default {
