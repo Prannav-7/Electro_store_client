@@ -647,14 +647,18 @@ const ProductDetails = () => {
                               {review.images.map((img, imgIndex) => {
                                 // Handle different image path formats
                                 let imageSrc;
+                                const isProduction = process.env.NODE_ENV === 'production' || 
+                                                    window.location.hostname !== 'localhost';
+                                const serverUrl = isProduction ? 'https://electro-store-server-8n0d.onrender.com' : 'http://localhost:5000';
+                                
                                 if (img.startsWith('http')) {
                                   imageSrc = img;
                                 } else if (img.startsWith('/uploads/')) {
-                                  imageSrc = `http://localhost:5000${img}`;
+                                  imageSrc = `${serverUrl}${img}`;
                                 } else if (img.startsWith('uploads/')) {
-                                  imageSrc = `http://localhost:5000/${img}`;
+                                  imageSrc = `${serverUrl}/${img}`;
                                 } else {
-                                  imageSrc = `http://localhost:5000/uploads/reviews/${img}`;
+                                  imageSrc = `${serverUrl}/uploads/reviews/${img}`;
                                 }
                                 
                                 return (
